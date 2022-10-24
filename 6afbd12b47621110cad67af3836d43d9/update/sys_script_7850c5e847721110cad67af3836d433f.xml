@@ -12,7 +12,7 @@
         <change_fields>false</change_fields>
         <client_callable>false</client_callable>
         <collection>x_909544_wish_list_wish_item</collection>
-        <condition>current.item.changes() || current.requester.changes() || current.operation() == 'insert'</condition>
+        <condition>current.item.changes() || current.requester.changes() || current.operation() == 'insert' ||current.quantity.changes() </condition>
         <description/>
         <execute_function>false</execute_function>
         <filter_condition/>
@@ -27,25 +27,28 @@
         <rest_service_text/>
         <rest_variables/>
         <role_conditions/>
-        <script><![CDATA[// Calculate Display name value by listing the item followed by the
-// User in parentheses. For example, Pencils (Fred Luddy)
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
 
-current.display_name = current.item + " (" + current.requester.name + ")";]]></script>
+	// Add your code here
+
+current.display_name = current.item + " (" + current.quantity + ") - " + current.requester.name;
+
+})(current, previous);]]></script>
         <sys_class_name>sys_script</sys_class_name>
         <sys_created_by>fred.luddy</sys_created_by>
         <sys_created_on>2022-10-24 02:45:58</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>7850c5e847721110cad67af3836d433f</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Populate Display name</sys_name>
         <sys_overrides/>
         <sys_package display_value="Wish List" source="x_909544_wish_list">6afbd12b47621110cad67af3836d43d9</sys_package>
         <sys_policy/>
         <sys_scope display_value="Wish List">6afbd12b47621110cad67af3836d43d9</sys_scope>
         <sys_update_name>sys_script_7850c5e847721110cad67af3836d433f</sys_update_name>
-        <sys_updated_by>fred.luddy</sys_updated_by>
-        <sys_updated_on>2022-10-24 02:45:58</sys_updated_on>
+        <sys_updated_by>carol.coughlin</sys_updated_by>
+        <sys_updated_on>2022-10-24 04:45:29</sys_updated_on>
         <template/>
         <when>before</when>
     </sys_script>
